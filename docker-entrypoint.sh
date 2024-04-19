@@ -12,6 +12,7 @@ term_handler() {
 # Trap SIGTERM signal
 trap 'term_handler' SIGTERM
 
+# Init sdkman and jenv
 source $HOME/.bash_profile
 
 exec "$@"
