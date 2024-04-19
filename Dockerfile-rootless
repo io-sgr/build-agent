@@ -40,7 +40,9 @@ RUN source $HOME/.bash_profile && \
     jenv add $HOME/.sdkman/candidates/java/11.0.12-open && \
     jenv add $HOME/.sdkman/candidates/java/17.0.2-open && \
     jenv add $HOME/.sdkman/candidates/java/21.0.2-open && \
-    jenv global 21.0.2
+    jenv global 21.0.2 && \
+    jenv enable-plugin maven && \
+    jenv enable-plugin export
 
 ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
