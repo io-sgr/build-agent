@@ -15,4 +15,22 @@ trap 'term_handler' SIGTERM
 # Init sdkman and jenv
 source $HOME/.bash_profile
 
+# If /docker-entrypoint.d/ exists and is a directory
+if [ -d "/docker-entrypoint.d/" ]; then
+  # For each file in /docker-entrypoint.d/
+  for entrypoint in /docker-entrypoint.d/*; do
+    case "$entrypoint" in
+      *.sh)
+        # If the file is a shell script, run it
+        echo "Running $entrypoint"
+        . "$entrypoint"
+        ;;
+      *)
+        echo "Ignoring $entrypoint"
+        ;;
+    esac
+  done
+fi
+
+# Execute the main command
 exec "$@"
